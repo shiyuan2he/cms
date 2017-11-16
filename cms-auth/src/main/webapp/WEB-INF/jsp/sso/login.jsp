@@ -38,7 +38,7 @@
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
                     <input id="codeImage" class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-                    <img src="http://localhost:9001/sso/image/kaptchaCode">
+                    <img src="http://localhost:9001/api/sso/image/v1.0/kaptchaCode">
                     <a href="javascript:login.changeImageCode();">看不清，换一张</a>
                 </div>
             </div>
@@ -63,7 +63,8 @@
     <script type="text/javascript" src="<%=basePath%>/resources/java-resource/plugins/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="<%=basePath%>/resources/java-resource/plugins/H-ui.admin.page/static/h-ui/js/H-ui.js"></script>
     <script type="text/javascript" src="<%=basePath%>/resources/java-resource/script/js/ajax.js"></script>
-    <script type="text/javascript" src="<%=basePath%>/resources/java-resource/script/js/login.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/script/js/constant.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/script/js/login.js"></script>
     <script>
         var _hmt = _hmt || [];
         (function() {

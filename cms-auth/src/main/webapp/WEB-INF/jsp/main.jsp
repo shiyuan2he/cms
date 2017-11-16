@@ -21,11 +21,26 @@
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
+    <%--<script type="text/javascript" src="<%=basePath%>/resources/java-resource/plugins/jquery/1.9.1/jquery.min.js"></script>--%>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/java-resource/plugins/layer/2.4/layer.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/java-resource/plugins/H-ui.admin.page/static/h-ui/js/H-ui.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/java-resource/plugins/H-ui.admin.page/static/h-ui.admin/js/H-ui.admin.page.js"></script>
+    <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+    <script type="text/javascript" src="<%=basePath%>/resources/java-resource/script/js/ajax.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/script/js/main.js"></script>
 </head>
 <body>
     <%@include file="main/main_header.jsp"%>
     <%@include file="main/main_left.jsp"%>
     <%@include file="main/main_info.jsp"%>
     <%@include file="main/main_footer.jsp"%>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            main.getMenu();
+        });
+    </script>
+
 </body>
 </html>

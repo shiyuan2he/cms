@@ -16,27 +16,37 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/view")
 public class ViewerController {
-    private final Logger _logger = LoggerFactory.getLogger(this.getClass()) ;
+    private final Logger _logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/toLoginView")
-    public ModelAndView toLoginView(){
+    public ModelAndView toLoginView() {
         _logger.info("toLoginView");
-        ModelAndView modelAndView = new ModelAndView() ;
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sso/login");
         return modelAndView;
     }
+
     @RequestMapping("/toRegView")
-    public ModelAndView toRegView(){
+    public ModelAndView toRegView() {
         _logger.info("toRegView");
-        ModelAndView modelAndView = new ModelAndView() ;
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sso/reg");
         return modelAndView;
     }
+
     @RequestMapping("/toMainView")
-    public ModelAndView toMainView(){
+    public ModelAndView toMainView() {
         _logger.info("进入到toMainView");
-        ModelAndView modelAndView = new ModelAndView() ;
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("main");
+        return modelAndView;
+    }
+
+    @RequestMapping("/toUserList")
+    public ModelAndView toUserList() {
+        _logger.info("toUserList");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user/user_list");
         return modelAndView;
     }
 }
