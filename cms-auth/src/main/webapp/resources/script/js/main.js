@@ -1,6 +1,6 @@
 var main = {
     // 获取树形权限
-    requestUrl_menu : 'http://localhost:9001/api/sso/auth/v1.0/permissions/list',
+    requestUrl_menu : constant.ssoInterfacePermissionsList(),
     /**
      * @description <p>获取菜单</p>
      * @author heshiyuan

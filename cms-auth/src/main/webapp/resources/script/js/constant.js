@@ -25,5 +25,9 @@ var constant = {
     // 获取树形权限接口地址
     ssoInterfacePermissionsList : function(){
         return constant.ssoServerAndPort() + '/api/sso/auth/v1.0/permissions/list';
+    },
+    ssoInterfaceGetAllUsers : function(){
+        return constant.ssoServerAndPort() + '/api/sso/user/v1.0/user/list' ;
     }
+
 }
