@@ -29,6 +29,7 @@
     <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
 
     <script type="text/javascript" src="<%=basePath%>/resources/java-resource/script/js/ajax.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/script/js/constant.js"></script>
     <script type="text/javascript" src="<%=basePath%>/resources/script/js/main.js"></script>
 </head>
 <body>

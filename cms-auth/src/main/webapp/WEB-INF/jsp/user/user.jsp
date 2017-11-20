@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/resources/java-resource/plugins/H-ui.admin.page/lib/Hui-iconfont/1.0.8/iconfont.css" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/resources/java-resource/plugins/H-ui.admin.page/static/h-ui.admin/skin/default/skin.css" id="skin" />
     <link rel="stylesheet" type="text/css" href="<%=basePath%>/resources/java-resource/plugins/H-ui.admin.page/static/h-ui.admin/css/style.css" />
+    <script type="text/javascript" src="<%=basePath%>/resources/java-resource/plugins/H-ui.admin.page/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <!--[if IE 6]>
     <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
@@ -29,8 +30,10 @@
     <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
 
     <script type="text/javascript" src="<%=basePath%>/resources/java-resource/script/js/ajax.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/script/js/constant.js"></script>
     <script type="text/javascript" src="<%=basePath%>/resources/script/js/main.js"></script>
-    <script type="text/javascript" src="<%=basePath%>/resources/script/js/main.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/script/js/user.js"></script>
+    
 </head>
 <body>
 <%@include file="../main/main_header.jsp"%>
@@ -40,7 +43,8 @@
 <script type="text/javascript">
     $(document).ready(function(){
         main.getMenu();
-        user.init() ;
+        //user.init() ;
+        user.getUserList();
     });
 </script>
 

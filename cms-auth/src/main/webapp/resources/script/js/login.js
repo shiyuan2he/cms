@@ -22,6 +22,7 @@ var login = {
     },
     changeImageCode : function () {
         console.log("changeImageCode");
-        $("#codeImg")[0].src = constant.ssoInterfaceKaptchaCode();
+        $("#codeImg").attr("src",constant.ssoInterfaceKaptchaCode());
+        //$("#codeImg")[0].src = constant.ssoInterfaceKaptchaCode();
     }
 }

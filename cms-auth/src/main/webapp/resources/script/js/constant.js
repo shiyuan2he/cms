@@ -1,6 +1,6 @@
 var constant = {
     ssoServerAndPort : function(){
-        return "http://localhost:9001" ;
+        return "http://192.168.1.4:9001" ;
     },
     // 登陆
     ssoInterfaceLogin : function(){

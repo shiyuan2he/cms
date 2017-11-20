@@ -5,7 +5,12 @@ target
 *.iml
 */*.iml
 */*/*.iml
-
+.project
+.settings
+*/*.project
+*/*.settings
+*.classpath
+*/*.classpath
 # Compiled class file
 *.class
 

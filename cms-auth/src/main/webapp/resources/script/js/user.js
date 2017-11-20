@@ -11,6 +11,7 @@ var user = {
     },
     callbackFunction: function (json) {
         console.log("回调函数返回值：", json);
+        debugger
         if (json.success) {
             var myTemplate = Handlebars.compile($("#menu-template").html());
             $('#menuList').html(myTemplate(json.data));

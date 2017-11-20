@@ -38,7 +38,7 @@
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
                     <input id="codeImage" class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-                    <img src="http://localhost:9001/api/sso/image/v1.0/kaptchaCode">
+                    <img src="http://192.168.1.4:9001/api/sso/image/v1.0/kaptchaCode">
                     <a href="javascript:login.changeImageCode();">看不清，换一张</a>
                 </div>
             </div>

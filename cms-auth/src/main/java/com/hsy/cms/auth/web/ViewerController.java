@@ -46,7 +46,7 @@ public class ViewerController {
     public ModelAndView toUserList() {
         _logger.info("toUserList");
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/user_list");
+        modelAndView.setViewName("user/user");
         return modelAndView;
     }
 }
