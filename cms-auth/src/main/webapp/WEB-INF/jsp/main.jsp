@@ -29,16 +29,18 @@
     <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
 
     <script type="text/javascript" src="<%=basePath%>/resources/java-resource/script/js/ajax.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/resources/script/js/constant.js"></script>
     <script type="text/javascript" src="<%=basePath%>/resources/script/js/main.js"></script>
 </head>
 <body>
     <%@include file="main/main_header.jsp"%>
     <%@include file="main/main_left.jsp"%>
-    <%@include file="main/main_info.jsp"%>
+    <%@include file="main/main_info.jsp"%>>
     <%@include file="main/main_footer.jsp"%>
     <script type="text/javascript">
         $(document).ready(function(){
             main.getMenu();
+            //main.getMainContent("${param.info}") ;
         });
     </script>
 
