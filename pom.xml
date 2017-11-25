@@ -12,7 +12,9 @@
     </modules>
     <packaging>pom</packaging>
 
-    <properties></properties>
+    <properties>
+    	<version.spring>5.0.1.RELEASE</version.spring>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -85,45 +87,45 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
             <!--2) spring dao层依赖-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
             <!-- 3) spring web 层依赖-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
             <!--4) 单元测试依赖-->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>4.3.8.RELEASE</version>
+                <version>${version.spring}</version>
             </dependency>
 
             <!--5.测试依赖 3.0+用配置文件的形式注入spring容器
@@ -166,7 +168,39 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+    </profiles>
     <build>
+    	<filters>
+            <filter>src/main/resources/profiles/${env}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <!-- java编译插件 -->
             <plugin>

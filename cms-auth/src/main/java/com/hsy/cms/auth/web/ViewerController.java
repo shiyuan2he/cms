@@ -38,7 +38,13 @@ public class ViewerController {
     public ModelAndView toMainView() {
         _logger.info("进入到toMainView");
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("main");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/toMainInfoView",method = RequestMethod.GET)
+    public ModelAndView toMainInfoView() {
+        _logger.info("进入到toMainInfoView");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("main/main_info");
         return modelAndView;
     }
 
@@ -46,7 +52,29 @@ public class ViewerController {
     public ModelAndView toUserList() {
         _logger.info("toUserList");
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user/user");
+        modelAndView.setViewName("user/user_list");
+        return modelAndView;
+    }
+    @RequestMapping("/toAddUserView")
+    public ModelAndView toAddUserView() {
+        _logger.info("toAddUserView");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("userId", 0);
+        modelAndView.setViewName("user/user_add");
+        return modelAndView;
+    }
+    @RequestMapping("/toChangePwdView")
+    public ModelAndView toChangePwdView() {
+        _logger.info("toChangePwdView");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user/user_change_password");
+        return modelAndView;
+    }
+    @RequestMapping("/toUserDetailView")
+    public ModelAndView toUserDetailView() {
+        _logger.info("toUserDetailView");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user/user_detail");
         return modelAndView;
     }
 }

@@ -35,11 +35,12 @@
 <body>
     <%@include file="main/main_header.jsp"%>
     <%@include file="main/main_left.jsp"%>
-    <%@include file="main/main_info.jsp"%>
+    <%@include file="main/main_info.jsp"%>>
     <%@include file="main/main_footer.jsp"%>
     <script type="text/javascript">
         $(document).ready(function(){
             main.getMenu();
+            //main.getMainContent("${param.info}") ;
         });
     </script>
 
