@@ -21,7 +21,7 @@ public class ViewerController {
     @RequestMapping("/toLoginView")
     public String toLoginView() {
         _logger.info("toLoginView");
-        return "login";
+        return "login/login";
     }
 
 
