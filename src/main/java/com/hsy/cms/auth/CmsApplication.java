@@ -2,6 +2,7 @@ package com.hsy.cms.auth;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author heshiyuan
@@ -14,6 +15,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * @price ¥5    微信：hewei1109
  */
 @SpringBootApplication
+@ComponentScan(value = {"com.hsy.sso.client.filter","com.hsy.cms"})
 public class CmsApplication {
     public static void main(String[] args) {
         new SpringApplicationBuilder(CmsApplication.class)

@@ -1,0 +1,19 @@
+#数据库连接配置
+spring:
+  datasource:
+    url: jdbc:mariadb://172.16.191.102:3306/blog?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root@mariadb
+    driver-class-name: org.mariadb.jdbc.Driver
+  thymeleaf:
+    mode: HTML5
+  #字符集和json格式工具
+  http:
+    encoding:
+      charset: utf-8
+    converters:
+      preferred-json-mapper: jackson
+    multipart:
+      max-file-size: 10MB
+  application:
+    name: blog

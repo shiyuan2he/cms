@@ -1,9 +1,9 @@
 package com.hsy.cms.auth.web;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author heshiyuan
@@ -14,13 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
  * @price ¥5    微信：hewei1109
  */
 @Controller
-@RequestMapping("/view")
-public class ViewerController {
+public class IndexController {
     private final Logger _logger = LoggerFactory.getLogger(this.getClass());
 
-    @RequestMapping("/login")
+    @RequestMapping("/")
     public String toLoginView() {
-        _logger.info("toLoginView");
+        _logger.info("首页");
         return "login/login";
     }
 }
