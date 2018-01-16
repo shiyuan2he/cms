@@ -39,4 +39,8 @@ public class ViewController {
     public String regGet() {
         return "user/register";
     }
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
 }

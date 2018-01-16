@@ -71,7 +71,7 @@ var ajax = {
             type : "POST",
             dataType : "json",
             url : serviceUrl,
-            success:callbackFunc,
+            success: callbackFunc,
             error:function(XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest.status);
                 console.log(XMLHttpRequest.readyState);
