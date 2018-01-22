@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>INSPINIA | Login</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+                <h2 class="logo-name">CMS</h2>
+            </div>
+            <h3>人生苦短，我选Java</h3>
+            <p>
+                我有故事，你有酒吗？
+            </p>
+            <p>没有绝对的热情，不足以造就伟大的工程师</p>
+            <form class="m-t" role="form" action="javascript:void(0);">
+                <div class="form-group">
+                    <input id="userName" type="text" class="form-control" placeholder="userName"/>
+                </div>
+                <div class="form-group">
+                    <input id="password" type="password" class="form-control" placeholder="password" required=""/>
+                </div>
+                <div class="form-group">
+                    <input id="imageCode" type="text" class="form-control" placeholder="验证码" required=""
+                           onblur="if(this.value==''){this.value='验证码:'}"
+                           onclick="if(this.value=='验证码:'){this.value='';}"
+                           value="验证码:"/>
+                    <img id="verifyCode" src="https://discovery:10001/image/api/base/service/image/v1/kaptchaCode?token=ss"/>
+                    <a id="changeImageCode" href="javascript:user.getImageCode();">看不清，换一张</a>
+                </div>
+                <button type="button" onclick="javascript:user.doLogin();" class="btn btn-primary block full-width m-b">Login</button>
+                <a th:href="@{register}" href="#">
+                    <small>Forgot password?</small>
+                </a>
+                <p class="text-muted text-center">
+                    <small>Do not have an account?</small>
+                </p>
+                <a class="btn btn-sm btn-white btn-block" th:href="@{register}" href="register.html">Create an account</a>
+            </form>
+            <p class="m-t">
+                <small>前凸后翘腿子长，肤白貌美腰身细</small>
+            </p>
+        </div>
+    </div>
+    <script th:src="@{/js/common/constant.js}"></script>
+    <script th:src="@{/js/common/ajax.js}"></script>
+    <script th:src="@{/js/user/user.js}"></script>
+    <!-- Mainly scripts -->
+    <script th:src="@{/js/jquery-2.1.1.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- Sweet alert -->
+    <script th:src="@{/js/plugins/sweetalert/sweetalert.min.js}"></script>
+    <script th:inline="javascript">
+        var error = [[${error}]];
+        $(document).ready(function () {
+            if (error != null) {
+                swal({
+                    title: "温馨提示",
+                    text: error
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
