@@ -1,6 +1,6 @@
 var user = {
 
-    "init" : function(){
+    init : function(){
         user.getImageCode() ;
     },
     /**
@@ -8,7 +8,7 @@ var user = {
      * @author heshiyuan
      * @date 2018/1/3 8:50
      */
-    "getImageCode" : function(){
+    getImageCode : function(){
         $("#verifyCode").attr("src",constant.api.imageCodeKaptcha) ;
     },
     doReg : function(){
@@ -41,10 +41,10 @@ var user = {
     doRegCallback : function(json){
         console.log(json);
         if(json.success){
-            console.log("login success");
-            window.location.href = "/view/user/login" ;
+            console.log("reg success");
+            window.location.href = "/dashboard" ;
         }else{
-            console.log("login failed");
+            console.log("reg failed");
             console.log(json.msg);
         }
     },
@@ -52,7 +52,7 @@ var user = {
         console.log(json);
         if(json.success){
             console.log("login success");
-            window.location.href = "/view/user/login" ;
+            window.location.href = "/dashboard" ;
         }else{
             console.log("login failed");
             console.log(json.msg);
