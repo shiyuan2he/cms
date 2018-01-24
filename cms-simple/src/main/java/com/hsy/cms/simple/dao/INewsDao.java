@@ -1,4 +1,4 @@
-package com.hsy.cms.simple.service;
+package com.hsy.cms.simple.dao;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import com.hsy.cms.simple.model.News;
 import com.hsy.cms.simple.util.Constant;
 	
 @Mapper
-public interface NewsService {
+public interface INewsDao {
 	
 	@Select("SELECT * FROM news WHERE ID = #{id};")
 	News findById(News news);

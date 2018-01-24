@@ -23,7 +23,7 @@ public class ViewController {
      */
     @GetMapping("/")
     public String index() {
-        return "user/login";
+        return "dashboard";
     }
     /**
      * 登录跳转

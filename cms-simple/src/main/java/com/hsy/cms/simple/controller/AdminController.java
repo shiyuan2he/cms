@@ -2,20 +2,18 @@ package com.hsy.cms.simple.controller;
 
 import javax.servlet.http.HttpSession;
 
+import com.hsy.cms.simple.dao.IAdminDao;
 import com.hsy.cms.simple.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import com.hsy.cms.simple.service.AdminService;
-
 @Controller
 public class AdminController {
 
 	@Autowired
-	private AdminService adminService;
+	private IAdminDao iAdminDao;
 
 
 
@@ -29,7 +27,7 @@ public class AdminController {
 	 */
 	@PostMapping("/admin/login")
 	public String loginPost(Admin admin, Model model, HttpSession httpSession) {
-		Admin adminRes = adminService.findByNameAndPassword(admin);
+		Admin adminRes = iAdminDao.findByNameAndPassword(admin);
 		if (adminRes != null) {
 			httpSession.setAttribute("admin", adminRes);
 			return "redirect:dashboard";
@@ -48,16 +46,5 @@ public class AdminController {
 	@GetMapping("/admin/register")
 	public String register(Model model) {
 		return "register";
-	}
-
-	/**
-	 * 仪表板页面
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/admin/dashboard")
-	public String dashboard(Model model) {
-		return "dashboard";
 	}
 }

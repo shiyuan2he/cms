@@ -1,4 +1,4 @@
-package com.hsy.cms.simple.service;
+package com.hsy.cms.simple.dao;
 
 import com.hsy.cms.simple.model.Admin;
 import org.apache.ibatis.annotations.Insert;
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface AdminService {
+public interface IAdminDao {
 
 	@Select("SELECT * FROM `admin` where userName = #{userName} and password = #{password} and state = 1;")
     Admin findByNameAndPassword(Admin admin);

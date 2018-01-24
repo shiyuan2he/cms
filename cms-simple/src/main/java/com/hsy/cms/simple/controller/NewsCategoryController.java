@@ -8,9 +8,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.hsy.cms.simple.dao.INewsCategoryDao;
 import com.hsy.cms.simple.model.NewsCategory;
 import com.hsy.cms.simple.model.ResObject;
-import com.hsy.cms.simple.service.NewsCategoryService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +27,11 @@ import com.hsy.cms.simple.util.Constant;
 import com.hsy.cms.simple.util.PageUtil;
 
 @Controller
+@RequestMapping(value = "/news/category")
 public class NewsCategoryController {
 
 	@Autowired
-	private NewsCategoryService newsCategoryService;
+	private INewsCategoryDao iNewsCategoryDao;
 	
 	/**
 	 * 文章分类列表
@@ -41,18 +42,18 @@ public class NewsCategoryController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/admin/newsCategoryManage_{pageCurrent}_{pageSize}_{pageCount}")
+	@RequestMapping("/newsCategoryManage_{pageCurrent}_{pageSize}_{pageCount}")
 	public String newsCategoryManage(NewsCategory newsCategory, @PathVariable Integer pageCurrent, @PathVariable Integer pageSize, @PathVariable Integer pageCount, Model model) {
 		//判断
 		if(pageSize == 0) pageSize = 10;
 		if(pageCurrent == 0) pageCurrent = 1;
-		int rows = newsCategoryService.count(newsCategory);
+		int rows = iNewsCategoryDao.count(newsCategory);
 		if(pageCount == 0) pageCount = rows%pageSize == 0 ? (rows/pageSize) : (rows/pageSize) + 1;
 		
 		//查询
 		newsCategory.setStart((pageCurrent - 1)*pageSize);
 		newsCategory.setEnd(pageSize);
-		List<NewsCategory> list = newsCategoryService.list(newsCategory);
+		List<NewsCategory> list = iNewsCategoryDao.list(newsCategory);
 		
 		//输出
 		model.addAttribute("list", list);
@@ -68,10 +69,10 @@ public class NewsCategoryController {
 	 * @param newsCategory
 	 * @return
 	 */
-	@GetMapping("/admin/newsCategoryEdit")
+	@GetMapping("/newsCategoryEdit")
 	public String newsCategoryEditGet(Model model,NewsCategory newsCategory) {
 		if(newsCategory.getId()!=0){
-			NewsCategory newsCategoryT = newsCategoryService.findById(newsCategory);
+			NewsCategory newsCategoryT = iNewsCategoryDao.findById(newsCategory);
 			model.addAttribute("newsCategory",newsCategoryT);
 		}
 		return "news/newsCategoryEdit";
@@ -85,7 +86,7 @@ public class NewsCategoryController {
 	 * @param httpSession
 	 * @return
 	 */
-	@PostMapping("/admin/newsCategoryEdit")
+	@PostMapping("/newsCategoryEdit")
 	public String newsCategoryEditPost(Model model,NewsCategory newsCategory, @RequestParam MultipartFile[] imageFile,HttpSession httpSession) {
 		for (MultipartFile file : imageFile) {
 			if (file.isEmpty()) {
@@ -108,17 +109,17 @@ public class NewsCategoryController {
 			}
 		}
 		if(newsCategory.getId()!=0){
-			newsCategoryService.update(newsCategory);
+			iNewsCategoryDao.update(newsCategory);
 		} else {
-			newsCategoryService.insert(newsCategory);
+			iNewsCategoryDao.insert(newsCategory);
 		}
 		return "redirect:newsCategoryManage_0_0_0";
 	}
 	
 	@ResponseBody
-	@PostMapping("/admin/newsCategoryEditState")
+	@PostMapping("/newsCategoryEditState")
 	public ResObject<Object> newsCategoryEditState(NewsCategory newsCategory) {
-		newsCategoryService.updateState(newsCategory);
+		iNewsCategoryDao.updateState(newsCategory);
 		ResObject<Object> object = new ResObject<Object>(Constant.Code01, Constant.Msg01, null, null);
 		return object;
 	}

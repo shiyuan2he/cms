@@ -8,8 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import com.hsy.cms.simple.model.NewsCategory;
 
-@Mapper
-public interface NewsCategoryService {
+public interface INewsCategoryService {
 	
 	@Select("SELECT * FROM `news_category` where id = #{id};")
 	NewsCategory findById(NewsCategory newsCategory);

@@ -8,8 +8,7 @@ public class BaseObject {
 	private int pageSize;
 	private int pageCount;
 	private String orderBy;
-	
-	
+
 	public String getOrderBy() {
 		return orderBy;
 	}

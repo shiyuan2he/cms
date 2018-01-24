@@ -9,8 +9,8 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
-import com.hsy.cms.simple.service.NewsCategoryService;
-import com.hsy.cms.simple.service.NewsService;
+import com.hsy.cms.simple.dao.INewsCategoryDao;
+import com.hsy.cms.simple.dao.INewsDao;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,36 +29,38 @@ import com.hsy.cms.simple.model.ResObject;
 import com.hsy.cms.simple.util.Constant;
 import com.hsy.cms.simple.util.PageUtil;
 
+@SuppressWarnings("SpringJavaAutowiringInspection")
 @Controller
+@RequestMapping(value = "/news")
 public class NewsController {
 
 	@Autowired
-	private NewsService newsService;
+	private INewsDao iNewsDao;
 
 	@Autowired
-	private NewsCategoryService newsCategoryService;
+	private INewsCategoryDao iNewsCategoryDao;
 	
 	
-	@RequestMapping("/admin/newsManage_{pageCurrent}_{pageSize}_{pageCount}")
+	@GetMapping("/newsManage_{pageCurrent}_{pageSize}_{pageCount}")
 	public String newsManage(News news,@PathVariable Integer pageCurrent,@PathVariable Integer pageSize,@PathVariable Integer pageCount, Model model) {
 		
 		//判断
 		if(pageSize == 0) pageSize = 10;
 		if(pageCurrent == 0) pageCurrent = 1;
-		int rows = newsService.count(news);
+		int rows = iNewsDao.count(news);
 		if(pageCount == 0) pageCount = rows%pageSize == 0 ? (rows/pageSize) : (rows/pageSize) + 1;
 		
 		//查询
 		news.setStart((pageCurrent - 1)*pageSize);
 		news.setEnd(pageSize);
 		if(news.getOrderBy()==null){news.setOrderBy(Constant.OrderByAddDateDesc);}
-		List<News> newsList = newsService.list(news);
+		List<News> newsList = iNewsDao.list(news);
 		
 		//文章分类
 		NewsCategory newsCategory = new NewsCategory();
 		newsCategory.setStart(0);
 		newsCategory.setEnd(Integer.MAX_VALUE);
-		List<NewsCategory> newsCategoryList = newsCategoryService.list(newsCategory);
+		List<NewsCategory> newsCategoryList = iNewsCategoryDao.list(newsCategory);
 		
 		//输出
 		model.addAttribute("newsCategoryList", newsCategoryList);
@@ -74,7 +76,6 @@ public class NewsController {
 	/**
 	 * 文章新增、修改跳转
 	 * @param model
-	 * @param newsCategory
 	 * @return
 	 */
 	@GetMapping("/admin/newsEdit")
@@ -82,10 +83,10 @@ public class NewsController {
 		NewsCategory newsCategory = new NewsCategory();
 		newsCategory.setStart(0);
 		newsCategory.setEnd(Integer.MAX_VALUE);
-		List<NewsCategory> newsCategoryList = newsCategoryService.list(newsCategory);
+		List<NewsCategory> newsCategoryList = iNewsCategoryDao.list(newsCategory);
 		model.addAttribute("newsCategoryList",newsCategoryList);
 		if(news.getId()!=0){
-			News newT = newsService.findById(news);
+			News newT = iNewsDao.findById(news);
 			model.addAttribute("news",newT);
 		}
 		return "news/newsEdit";
@@ -121,9 +122,9 @@ public class NewsController {
 			}
 		}
 		if(news.getId()!=0){
-			newsService.update(news);
+			iNewsDao.update(news);
 		} else {
-			newsService.insert(news);
+			iNewsDao.insert(news);
 		}
 		return "redirect:newsManage_0_0_0";
 	}
@@ -131,7 +132,7 @@ public class NewsController {
 	@ResponseBody
 	@PostMapping("/admin/newsEditState")
 	public ResObject<Object> newsEditState(News news) {
-		News newsO = newsService.findById(news);
+		News newsO = iNewsDao.findById(news);
 		
 		if(news.getState()==0){
 			news.setState(newsO.getState());
@@ -151,7 +152,7 @@ public class NewsController {
 		if(news.getScore()==0){
 			news.setScore(newsO.getScore());
 		}
-		newsService.updateState(news);
+		iNewsDao.updateState(news);
 		ResObject<Object> object = new ResObject<Object>(Constant.Code01, Constant.Msg01, null, null);
 		return object;
 	}
