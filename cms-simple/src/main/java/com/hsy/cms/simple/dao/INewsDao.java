@@ -13,13 +13,13 @@ import com.hsy.cms.simple.util.Constant;
 @Mapper
 public interface INewsDao {
 	
-	@Select("SELECT * FROM news WHERE ID = #{id};")
+	@Select("SELECT * FROM t_news WHERE ID = #{id};")
 	News findById(News news);
 	
 	@Select({
 		"<script>",
-		"SELECT N.*,C.NAME AS CATEGORYNAME,C.IMAGE AS CATEGORYIMAGE FROM news N ",
-		"LEFT JOIN news_category C ON N.CATEGORY = C.ID ",
+		"SELECT N.*,C.NAME AS CATEGORYNAME,C.IMAGE AS CATEGORYIMAGE FROM t_news N ",
+		"LEFT JOIN t_news_category C ON N.CATEGORY = C.ID ",
 		"WHERE N.STATE = 1 ",
 			"<when test='title!=null'>",
 				"AND N.TITLE LIKE CONCAT('%',#{title},'%')",
@@ -55,8 +55,8 @@ public interface INewsDao {
 	
 	@Select({
 		"<script>",
-		"SELECT COUNT(*) FROM news N ",
-		"LEFT JOIN news_category C ON N.CATEGORY = C.ID ",
+		"SELECT COUNT(*) FROM t_news N ",
+		"LEFT JOIN t_news_category C ON N.CATEGORY = C.ID ",
 		"WHERE N.STATE = 1 ",
 			"<when test='title!=null'>",
 				"AND N.TITLE LIKE CONCAT('%',#{title},'%')",
@@ -71,13 +71,13 @@ public interface INewsDao {
 	})
 	int count(News news);
 	
-	@Insert("INSERT INTO `news` (`id`,`title`,`description`,`category`,`image`,`content`,`addDate`,`updateDate`,`commendState`,`state`,`browses`,`likes`,`comments`,`score`) VALUES (null,#{title},#{description},#{category},#{image},#{content},now(),now(),1,1,0,0,0,0);")
+	@Insert("INSERT INTO `t_news` (`id`,`title`,`description`,`category`,`image`,`content`,`addDate`,`updateDate`,`commendState`,`state`,`browses`,`likes`,`comments`,`score`) VALUES (null,#{title},#{description},#{category},#{image},#{content},now(),now(),1,1,0,0,0,0);")
 	int insert(News news);
 
-	@Update("UPDATE `news` SET `title` = #{title}, `description` = #{description}, `category` = #{category}, `image` = #{image}, `content` = #{content}, `updateDate` = now()  WHERE `id` = #{id};")
+	@Update("UPDATE `t_news` SET `title` = #{title}, `description` = #{description}, `category` = #{category}, `image` = #{image}, `content` = #{content}, `updateDate` = now()  WHERE `id` = #{id};")
 	int update(News news);
 	
-	@Update("UPDATE `news` SET `state` = #{state}, `commendState` = #{commendState}, `browses` = #{browses}, `likes` = #{likes}, `comments` = #{comments}, `score` = #{score} WHERE `id` = #{id};")
+	@Update("UPDATE `t_news` SET `state` = #{state}, `commendState` = #{commendState}, `browses` = #{browses}, `likes` = #{likes}, `comments` = #{comments}, `score` = #{score} WHERE `id` = #{id};")
 	int updateState(News news);
 	
 }

@@ -11,12 +11,12 @@ import com.hsy.cms.simple.model.NewsCategory;
 @Mapper
 public interface INewsCategoryDao {
 	
-	@Select("SELECT * FROM `news_category` where id = #{id};")
+	@Select("SELECT * FROM `t_news_category` where id = #{id};")
 	NewsCategory findById(NewsCategory newsCategory);
 	
 	@Select({
 		"<script>",
-		"SELECT * FROM `news_category`",
+		"SELECT * FROM `t_news_category`",
 		"WHERE state = 1",
 			"<when test='name!=null'>",
 				"AND name LIKE CONCAT('%',#{name},'%')",
@@ -28,7 +28,7 @@ public interface INewsCategoryDao {
 	
 	@Select({
 		"<script>",
-		"SELECT count(*) FROM `news_category`",
+		"SELECT count(*) FROM `t_news_category`",
 		"WHERE state = 1",
 			"<when test='name!=null'>",
 				"AND name LIKE CONCAT('%',#{name},'%')",
@@ -37,12 +37,12 @@ public interface INewsCategoryDao {
 	})
 	int count(NewsCategory newsCategory);
 	
-	@Insert("INSERT INTO `news_category` (`id`, `name`, `description`, `image`, `addDate`, `state`) VALUES (null, #{name}, #{description}, #{image}, now(), 1);")
+	@Insert("INSERT INTO `t_news_category` (`id`, `name`, `description`, `image`, `addDate`, `state`) VALUES (null, #{name}, #{description}, #{image}, now(), 1);")
 	int insert(NewsCategory newsCategory);
 	
-	@Update("UPDATE `news_category`SET `name` = #{name}, `description` = #{description}, `image` = #{image} WHERE `id` = #{id};")
+	@Update("UPDATE `t_news_category` SET `name` = #{name}, `description` = #{description}, `image` = #{image} WHERE `id` = #{id};")
 	int update(NewsCategory newsCategory);
 	
-	@Update("UPDATE `news_category`SET `state` = #{state} WHERE `id` = #{id};")
+	@Update("UPDATE `t_news_category` SET `state` = #{state} WHERE `id` = #{id};")
 	int updateState(NewsCategory newsCategory);
 }

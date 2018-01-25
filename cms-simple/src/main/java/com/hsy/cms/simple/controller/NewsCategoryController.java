@@ -12,6 +12,8 @@ import com.hsy.cms.simple.dao.INewsCategoryDao;
 import com.hsy.cms.simple.model.NewsCategory;
 import com.hsy.cms.simple.model.ResObject;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +28,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hsy.cms.simple.util.Constant;
 import com.hsy.cms.simple.util.PageUtil;
 
+@SuppressWarnings("SpringJavaAutowiringInspection")
 @Controller
 @RequestMapping(value = "/news/category")
 public class NewsCategoryController {
-
+	private final static Logger _logger = LoggerFactory.getLogger(NewsCategoryController.class) ;
 	@Autowired
 	private INewsCategoryDao iNewsCategoryDao;
 	
@@ -90,7 +93,7 @@ public class NewsCategoryController {
 	public String newsCategoryEditPost(Model model,NewsCategory newsCategory, @RequestParam MultipartFile[] imageFile,HttpSession httpSession) {
 		for (MultipartFile file : imageFile) {
 			if (file.isEmpty()) {
-				System.out.println("文件未上传");
+				_logger.info("文件未上传");
 			} else {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 				Date date = new java.util.Date();
@@ -98,13 +101,16 @@ public class NewsCategoryController {
 				String fileName = strDate + file.getOriginalFilename().substring(
 								file.getOriginalFilename().indexOf("."),
 								file.getOriginalFilename().length());
-				String realPath = httpSession.getServletContext().getRealPath("/userfiles");
-				System.out.println("realPath : "+realPath);
+				String realPath = NewsCategoryController.class.getClassLoader()
+						.getResource("").getPath()
+						.replaceAll("target/classes/","")+"src/main/webapp/userfiles/" ;
+				realPath = realPath.substring(1,realPath.length()) ;
+				_logger.info("文件存储地址：{}",realPath);
 				try {
 					FileUtils.copyInputStreamToFile(file.getInputStream(),new File(realPath, fileName));
 					newsCategory.setImage("/userfiles/"+fileName);
 				} catch (IOException e) {
-					e.printStackTrace();
+					throw new RuntimeException("上传文件失败，请重新上传");
 				}
 			}
 		}
@@ -123,5 +129,4 @@ public class NewsCategoryController {
 		ResObject<Object> object = new ResObject<Object>(Constant.Code01, Constant.Msg01, null, null);
 		return object;
 	}
-	
 }

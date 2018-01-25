@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import com.hsy.cms.simple.dao.INewsCategoryDao;
 import com.hsy.cms.simple.dao.INewsDao;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,7 @@ import com.hsy.cms.simple.util.PageUtil;
 @Controller
 @RequestMapping(value = "/news")
 public class NewsController {
-
+	private final static Logger _logger = LoggerFactory.getLogger(NewsController.class) ;
 	@Autowired
 	private INewsDao iNewsDao;
 
@@ -78,7 +80,7 @@ public class NewsController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/admin/newsEdit")
+	@GetMapping("/newsEdit")
 	public String newsEditGet(Model model,News news) {
 		NewsCategory newsCategory = new NewsCategory();
 		newsCategory.setStart(0);
@@ -95,24 +97,26 @@ public class NewsController {
 	/**
 	 * 文章新增、修改提交
 	 * @param model
-	 * @param newsCategory
 	 * @param imageFile
 	 * @param httpSession
 	 * @return
 	 */
-	@PostMapping("/admin/newsEdit")
+	@PostMapping("/newsEdit")
 	public String newsEditPost(Model model,News news, @RequestParam MultipartFile[] imageFile,HttpSession httpSession) {
 		for (MultipartFile file : imageFile) {
 			if (file.isEmpty()) {
-				System.out.println("文件未上传");
+				_logger.info("文件未上传");
 			} else {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 				Random random = new Random();
 				Date date = new java.util.Date();
 				String strDate = sdf.format(date);
 				String fileName = strDate + "_" + random.nextInt(1000) + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf("."),file.getOriginalFilename().length());
-				String realPath = httpSession.getServletContext().getRealPath("/userfiles");
-				System.out.println("realPath : "+realPath);
+				String realPath = NewsCategoryController.class.getClassLoader()
+						.getResource("").getPath()
+						.replaceAll("target/classes/","")+"src/main/webapp/userfiles/" ;
+				realPath = realPath.substring(1,realPath.length()) ;
+				_logger.info("文件存储地址：{}",realPath);
 				try {
 					FileUtils.copyInputStreamToFile(file.getInputStream(),new File(realPath, fileName));
 					news.setImage("/userfiles/"+fileName);
@@ -130,7 +134,7 @@ public class NewsController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/admin/newsEditState")
+	@PostMapping("/newsEditState")
 	public ResObject<Object> newsEditState(News news) {
 		News newsO = iNewsDao.findById(news);
 		
