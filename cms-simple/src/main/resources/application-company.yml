@@ -13,6 +13,9 @@ spring:
     multipart:
       maxFileSize: 10Mb
       maxRequestSize: 100Mb
+    encoding:
+      charset: UTF-8
+      force: true
 
 mybatis:
   config-location: classpath:/mybatis-config.xml
@@ -21,4 +24,11 @@ logging:
     org:
       springfremework:
         web: debug
+      apache:
+        ibatis: TRACE
+    java:
+      sql:
+        Connection: DEBUG
+        Statement: DEBUG
+        PreparedStatement: DEBUG
 
