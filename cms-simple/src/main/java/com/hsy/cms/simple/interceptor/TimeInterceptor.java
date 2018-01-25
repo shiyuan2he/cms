@@ -29,6 +29,7 @@ public class TimeInterceptor extends HandlerInterceptorAdapter {
         long startTime = (long) request.getAttribute("startTime");
         request.removeAttribute("startTime");
         long endTime = System.currentTimeMillis() ;
-        logger.info("本次请求耗时：{}毫秒",(endTime - startTime)) ;
+
+        logger.info("本次请求接口({}),耗时：{}毫秒",request.getRequestURL(),(endTime - startTime)) ;
     }
 }

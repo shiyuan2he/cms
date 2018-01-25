@@ -1,6 +1,6 @@
 package com.hsy.cms.simple;
 
-import org.springframework.boot.builder.SpringApplicationBuilder;
+/*import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 public class ServletInitializer extends SpringBootServletInitializer{
@@ -10,4 +10,4 @@ public class ServletInitializer extends SpringBootServletInitializer{
 		return builder.sources(CmsSimpleApplication.class);
 	}
 	
-}
+}*/
