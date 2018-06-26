@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @SpringBootApplication
-@ComponentScan(value = {"com.hsy.sso.client.filter","com.hsy.cms"})
+//@ComponentScan(value = {"com.hsy.cms"})
 public class CmsApplication {
     public static void main(String[] args) {
         new SpringApplicationBuilder(CmsApplication.class)

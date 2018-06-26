@@ -1,4 +1,4 @@
-package com.hsy.cms.simple;
+package com.hsy.cms.simple.init;
 
 /*import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;

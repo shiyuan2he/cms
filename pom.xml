@@ -7,6 +7,7 @@
         <module>cms-better</module>
         <module>blog</module>
         <module>cms-simple</module>
+        <module>cms-pms</module>
     </modules>
 
     <parent>

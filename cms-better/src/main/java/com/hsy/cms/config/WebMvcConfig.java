@@ -19,7 +19,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(value = "com.hsy.cms")
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     //视图解析器
@@ -40,6 +39,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
-        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/") ;
+        //registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/") ;
+        //super.addResourceHandlers(registry);
     }
 }

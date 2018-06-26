@@ -55,7 +55,7 @@ public interface INewsDao {
 	
 	@Select({
 		"<script>",
-		"SELECT COUNT(*) FROM t_news N ",
+		"SELECT COUNT(*) FROM news N ",
 		"LEFT JOIN t_news_category C ON N.CATEGORY = C.ID ",
 		"WHERE N.STATE = 1 ",
 			"<when test='title!=null'>",
