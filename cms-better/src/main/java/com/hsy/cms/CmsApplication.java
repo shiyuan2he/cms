@@ -28,7 +28,7 @@ public class CmsApplication {
     }
     @RequestMapping(value = "/")
     public String home(){
-        return "login/login" ;
+        return "index" ;
     }
 
 }
