@@ -2,16 +2,15 @@ package com.hsy.cms.simple.service;
 
 import java.util.List;
 
+import com.hsy.cms.simple.model.NewsCategory;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import com.hsy.cms.simple.model.NewsCategory;
 
 public interface INewsCategoryService {
 	
 	@Select("SELECT * FROM `news_category` where id = #{id};")
-	NewsCategory findById(NewsCategory newsCategory);
+    NewsCategory findById(NewsCategory newsCategory);
 	
 	@Select({
 		"<script>",

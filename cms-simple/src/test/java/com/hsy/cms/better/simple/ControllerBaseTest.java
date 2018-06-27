@@ -1,4 +1,4 @@
-package com.hsy.cms.simple;
+package com.hsy.cms.better.simple;
 
 import com.hsy.java.util.spring.SpringWebJunitBase;
 import org.junit.Before;

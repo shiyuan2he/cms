@@ -1,10 +1,8 @@
-package com.hsy.cms;
+package com.hsy.cms.better;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author heshiyuan
@@ -26,9 +24,4 @@ public class CmsApplication {
                 .run(args)
                 ;
     }
-    @RequestMapping(value = "/")
-    public String home(){
-        return "index" ;
-    }
-
 }

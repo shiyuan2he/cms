@@ -2,19 +2,18 @@ package com.hsy.cms.simple.dao;
 
 import java.util.List;
 
+import com.hsy.cms.simple.model.News;
+import com.hsy.cms.simple.Constant;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.hsy.cms.simple.model.News;
-import com.hsy.cms.simple.util.Constant;
-	
 @Mapper
 public interface INewsDao {
 	
 	@Select("SELECT * FROM t_news WHERE ID = #{id};")
-	News findById(News news);
+    News findById(News news);
 	
 	@Select({
 		"<script>",
@@ -30,7 +29,7 @@ public interface INewsDao {
 			"<when test='commendState!=0'>",
 				"AND commendState = #{commendState}",
 			"</when>",
-			"<when test='orderBy==\""+Constant.OrderByAddDateAsc+"\"'>",
+			"<when test='orderBy==\""+ Constant.OrderByAddDateAsc+"\"'>",
 				"order by "+Constant.OrderByAddDateAsc+",addDate desc",
 			"</when>",
 			"<when test='orderBy==\""+Constant.OrderByAddDateDesc+"\"'>",

@@ -1,4 +1,4 @@
-package com.hsy.cms.config;
+package com.hsy.cms.better.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,14 +32,15 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     }*/
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/").setViewName("login/login");
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/welcome").setViewName("welcome");
         registry.addViewController("/view/login").setViewName("login/login");
         registry.addViewController("/view/reg").setViewName("login/reg");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
-        //registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/") ;
-        //super.addResourceHandlers(registry);
+        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/") ;
+        super.addResourceHandlers(registry);
     }
 }

@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
+import com.hsy.cms.simple.model.User;
 import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hsy.cms.simple.model.ResObject;
-import com.hsy.cms.simple.model.User;
-import com.hsy.cms.simple.util.Constant;
+import com.hsy.cms.simple.Constant;
 
 @RestController
 public class AppController {

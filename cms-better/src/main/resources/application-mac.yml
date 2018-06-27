@@ -5,4 +5,21 @@ spring:
     password: root@mariadb
     driver-class-name: org.mariadb.jdbc.Driver
   thymeleaf:
-    cache: false # 实时展示页面内容
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
+  mybatis:
+    config-location: classpath:/mybatis-config.xml
+  logging:
+    level:
+      org:
+        springfremework:
+          web: debug
+        apache:
+          ibatis: TRACE
+      java:
+        sql:
+          Connection: DEBUG
+          Statement: DEBUG
+          PreparedStatement: DEBUG

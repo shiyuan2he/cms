@@ -2,17 +2,17 @@ package com.hsy.cms.simple.dao;
 
 import java.util.List;
 
+import com.hsy.cms.simple.model.NewsCategory;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import com.hsy.cms.simple.model.NewsCategory;
 
 @Mapper
 public interface INewsCategoryDao {
 	
 	@Select("SELECT * FROM `t_news_category` where id = #{id};")
-	NewsCategory findById(NewsCategory newsCategory);
+    NewsCategory findById(NewsCategory newsCategory);
 	
 	@Select({
 		"<script>",

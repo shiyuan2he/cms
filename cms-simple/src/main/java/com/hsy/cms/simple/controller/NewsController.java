@@ -9,6 +9,8 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
+import com.hsy.cms.simple.model.NewsCategory;
+import com.hsy.cms.simple.PageUtil;
 import com.hsy.cms.simple.dao.INewsCategoryDao;
 import com.hsy.cms.simple.dao.INewsDao;
 import org.apache.commons.io.FileUtils;
@@ -26,10 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hsy.cms.simple.model.News;
-import com.hsy.cms.simple.model.NewsCategory;
 import com.hsy.cms.simple.model.ResObject;
-import com.hsy.cms.simple.util.Constant;
-import com.hsy.cms.simple.util.PageUtil;
+import com.hsy.cms.simple.Constant;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Controller

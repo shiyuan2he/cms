@@ -2,18 +2,16 @@ package com.hsy.cms.simple.service;
 
 import java.util.List;
 
+import com.hsy.cms.simple.model.News;
+import com.hsy.cms.simple.Constant;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.hsy.cms.simple.model.News;
-import com.hsy.cms.simple.util.Constant;
-	
 public interface INewsService {
 	
 	@Select("SELECT * FROM news WHERE ID = #{id};")
-	News findById(News news);
+    News findById(News news);
 	
 	@Select({
 		"<script>",
@@ -29,7 +27,7 @@ public interface INewsService {
 			"<when test='commendState!=0'>",
 				"AND commendState = #{commendState}",
 			"</when>",
-			"<when test='orderBy==\""+Constant.OrderByAddDateAsc+"\"'>",
+			"<when test='orderBy==\""+ Constant.OrderByAddDateAsc+"\"'>",
 				"order by "+Constant.OrderByAddDateAsc+",addDate desc",
 			"</when>",
 			"<when test='orderBy==\""+Constant.OrderByAddDateDesc+"\"'>",

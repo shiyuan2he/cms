@@ -1,4 +1,4 @@
-package com.hsy.cms.simple.util;
+package com.hsy.cms.simple;
 
 public class PageUtil {
 	

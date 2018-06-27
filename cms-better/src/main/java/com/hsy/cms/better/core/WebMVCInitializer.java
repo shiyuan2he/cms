@@ -1,6 +1,6 @@
-package com.hsy.cms.core;
+package com.hsy.cms.better.core;
 
-import com.hsy.cms.config.WebMvcConfig;
+import com.hsy.cms.better.config.WebMvcConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;

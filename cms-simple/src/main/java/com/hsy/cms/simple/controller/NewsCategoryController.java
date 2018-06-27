@@ -8,8 +8,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.hsy.cms.simple.dao.INewsCategoryDao;
 import com.hsy.cms.simple.model.NewsCategory;
+import com.hsy.cms.simple.PageUtil;
+import com.hsy.cms.simple.dao.INewsCategoryDao;
 import com.hsy.cms.simple.model.ResObject;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -25,8 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.hsy.cms.simple.util.Constant;
-import com.hsy.cms.simple.util.PageUtil;
+import com.hsy.cms.simple.Constant;
 
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Controller

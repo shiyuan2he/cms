@@ -1,4 +1,4 @@
-package com.hsy.cms.intercepter;
+package com.hsy.cms.better.intercepter;
 
 /**
  * @author heshiyuan
