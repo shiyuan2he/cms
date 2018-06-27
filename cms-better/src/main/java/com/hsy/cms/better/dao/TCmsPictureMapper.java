@@ -18,7 +18,7 @@ public interface TCmsPictureMapper {
 
     @Insert({
         "insert into t_cms_picture(picture_id, picture_url, source, del)" +
-            "values(${pictureId}, ${pictureUrl}, ${source}, ${del})"
+            "values(#{pictureId}, #{pictureUrl}, #{source}, #{del})"
     })
     int insert();
     

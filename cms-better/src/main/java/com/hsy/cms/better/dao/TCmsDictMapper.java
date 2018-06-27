@@ -17,10 +17,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TCmsDictMapper {
 
     @Insert({
-        "insert into t_cms_dict(dict_id, dict_name, parent_id, " +
-            "create_time, create_user_id, update_time, update_user_id, del)" +
-            "values(${dictId}, ${dictName}, ${parentId}, ${createTime}, " +
-            "${createUserId}, ${updateTime}, ${updateUserId}, ${del})"
+        "insert into t_cms_dict(dict_id, dict_name, parent_id, create_time, create_user_id, update_time, update_user_id, del)" +
+            "values(#{dictId}, #{dictName}, #{parentId}, #{createTime}, #{createUserId}, #{updateTime}, #{updateUserId}, #{del})"
     })
     int insert();
     

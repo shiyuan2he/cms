@@ -18,10 +18,10 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TCmsCheckMapper {
 
     @Insert({
-        "<script>insert into t_cms_check('check_id', 'check_state', 'check_name','check_remark', " +
-                "'create_time', 'create_user_id', 'check_time', 'check_user_id', 'del') " +
-                "values(${checkId}, ${checkState}, ${checkName}, ${checkRemark}, ${createTime}, " +
-                "${createUserId}, ${checkTime}, ${checkUserId}, ${del})</script>"
+        "<script>" +
+            "insert into t_cms_check" +
+                "(check_id, check_state, check_name,check_remark, create_time, create_user_id, check_time, check_user_id, del) " +
+            "values (${checkId}, ${checkState}, ${checkName}, ${checkRemark}, ${createTime}, ${createUserId}, ${checkTime}, ${checkUserId}, ${del})</script>"
     })
     int insert(TCmsCheck tCmsCheck);
 }
