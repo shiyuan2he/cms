@@ -5,9 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>cms-better</module>
-        <module>blog</module>
         <module>cms-simple</module>
-        <module>cms-pms</module>
     </modules>
 
     <parent>
@@ -92,6 +90,16 @@
                 <groupId>com.hsy.java</groupId>
                 <artifactId>java-bean</artifactId>
                 <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.9.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.miemiedev</groupId>
+                <artifactId>mybatis-paginator</artifactId>
+                <version>1.2.15</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,5 +1,6 @@
 package com.hsy.cms.better.dao;
 
+import com.hsy.cms.better.bean.entity.TCmsInformation;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,6 +25,6 @@ public interface TCmsInformationMapper {
                 "#{createUserId}, #{updateUserId}, #{del}, #{browsesCount}, #{likesCount}," +
                 "#{commentsCount})"
     })
-    int insert();
+    int insert(TCmsInformation information);
 
 }
