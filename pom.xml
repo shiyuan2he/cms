@@ -88,6 +88,11 @@
                 <artifactId>java-util</artifactId>
                 <version>1.0</version>
             </dependency>
+            <dependency>
+                <groupId>com.hsy.java</groupId>
+                <artifactId>java-bean</artifactId>
+                <version>1.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>

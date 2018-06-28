@@ -1,6 +1,6 @@
 package com.hsy.cms.better.dao;
 
-import com.hsy.cms.better.entity.TCmsCheck;
+import com.hsy.cms.better.bean.entity.TCmsCheck;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 

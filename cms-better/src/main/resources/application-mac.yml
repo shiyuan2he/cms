@@ -11,15 +11,15 @@ spring:
     cache: false
   mybatis:
     config-location: classpath:/mybatis-config.xml
-  logging:
-    level:
-      org:
-        springfremework:
-          web: debug
-        apache:
-          ibatis: TRACE
-      java:
-        sql:
-          Connection: DEBUG
-          Statement: DEBUG
-          PreparedStatement: DEBUG
+#  logging:
+#    level:
+#      org:
+#        springfremework:
+#          web: debug
+#        apache:
+#          ibatis: TRACE
+#      java:
+#        sql:
+#          Connection: DEBUG
+#          Statement: DEBUG
+#          PreparedStatement: DEBUG
