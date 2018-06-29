@@ -71,6 +71,7 @@ var ajax = {
         $.ajax({
             type : "POST",
             dataType : "json",
+            contentType: "application/json; charset=utf-8",
             param : param,
             url : serviceUrl,
             success:callbackFunc,
