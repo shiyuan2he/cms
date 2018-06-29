@@ -53,10 +53,11 @@ var ajax = {
     postJsonp: function(serviceUrl,param,callbackFunc){
         ajax.jsonpWithParam("POST",serviceUrl,callbackFunc,param);
     },
-    getJson : function(serviceUrl,callbackFunc){
+    getJson : function(serviceUrl,callbackFunc, param){
         $.ajax({
             type : "GET",
             dataType : "json",
+            param : param,
             url : serviceUrl,
             success:callbackFunc,
             error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -66,10 +67,11 @@ var ajax = {
             }
         });
     },
-    postJson : function(serviceUrl,callbackFunc){
+    postJson : function(serviceUrl,callbackFunc,param){
         $.ajax({
             type : "POST",
             dataType : "json",
+            param : param,
             url : serviceUrl,
             success:callbackFunc,
             error:function(XMLHttpRequest, textStatus, errorThrown) {

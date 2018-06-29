@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -44,8 +40,7 @@ public class PictureController {
     @ResponseBody
     public ResponseBodyBean<String> upload(
             @RequestParam(value="file",required=false) MultipartFile imageFile,
-            HttpServletRequest request,
-            HttpSession httpSession) throws IOException {
+            HttpServletRequest request) throws IOException {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date = new java.util.Date();
@@ -53,10 +48,10 @@ public class PictureController {
         String fileName = strDate + imageFile.getOriginalFilename().substring(
                 imageFile.getOriginalFilename().indexOf("."),imageFile.getOriginalFilename().length());
 
-//        String realPath = httpSession.getServletContext().getRealPath(pictureServer);
         /*String realPath = PictureController.class.getResource("")
                 .getPath().split("target/classes")[0].substring(1).concat("src/main/resources/assets"+pictureServer);*/
-        String realPath = PictureController.class.getResource("").getPath().substring(1).split("classes")[0].concat("classes/assets"+pictureServer);
+        String realPath = PictureController.class.getResource("").getPath()
+                .substring(1).split("classes")[0].concat("classes/assets"+pictureServer);
 
         File file = new File(realPath);
         if(!file.exists()){
@@ -73,15 +68,4 @@ public class PictureController {
         }
         return new ResponseBodyBean<>(true,"0000","上传成功",returnUrl);
     }
-    private String getRandomString(int length){
-        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random=new Random();
-        StringBuffer sb=new StringBuffer();
-        for(int i=0;i<length;i++){
-            int number=random.nextInt(62);
-            sb.append(str.charAt(number));
-        }
-        return sb.toString();
-    }
-
 }
