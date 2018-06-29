@@ -21,7 +21,7 @@ public interface TCmsCheckMapper {
         "<script>" +
             "insert into t_cms_check" +
                 "(check_id, check_state, check_name,check_remark, create_time, create_user_id, check_time, check_user_id, del) " +
-            "values (${checkId}, ${checkState}, ${checkName}, ${checkRemark}, ${createTime}, ${createUserId}, ${checkTime}, ${checkUserId}, ${del})</script>"
+            "values (#{checkId}, #{checkState}, #{checkName}, #{checkRemark}, #{createTime}, #{createUserId}, #{checkTime}, #{checkUserId}, #{del})</script>"
     })
     int insert(TCmsCheck tCmsCheck);
 }

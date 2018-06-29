@@ -1,5 +1,6 @@
 package com.hsy.cms.better.dao;
 
+import com.hsy.cms.better.bean.entity.TCmsPicture;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,9 +18,10 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TCmsPictureMapper {
 
     @Insert({
-        "insert into t_cms_picture(picture_id, picture_url, source, del)" +
-            "values(#{pictureId}, #{pictureUrl}, #{source}, #{del})"
+        "<script>" +
+                "insert into t_cms_picture(picture_id, picture_url, source, del)" +
+            "values (#{pictureId}, #{pictureUrl}, #{source}, 0)</script>"
     })
-    int insert();
+    int insert(TCmsPicture picture);
     
 }

@@ -74,11 +74,11 @@
             contentType: false,    //不可缺
             processData: false,    //不可缺
             dataType:"json",
-            success: function(suc) {
+            success: function(data) {
                 debugger
-                if(suc.code=="0000"){
-                    $("#thumbUrl").val(suc.message);//将地址存储好
-                    $("#thumburlShow").attr("src",suc.data);//显示图片
+                if(data.success){
+                    $("#thumbUrl").val(data.message);//将地址存储好
+                    $("#thumburlShow").attr("src",data.pictureUrl);//显示图片
                 }else{
                     alertLayel("上传失败");
                     $("#url").val("");

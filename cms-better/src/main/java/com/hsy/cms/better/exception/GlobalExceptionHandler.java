@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public ModelAndView exception(Exception exception , WebRequest request){
-        logger.error("【全局异常处理】捕获异常");
+        logger.error("【全局异常处理】捕获异常，异常信息：{}", exception);
         ModelAndView modelAndView = new ModelAndView("exception") ;
         modelAndView.addObject("exceptionMsg",exception.getMessage()) ;
         return modelAndView ;
@@ -39,8 +39,8 @@ public class GlobalExceptionHandler {
         return modelAndView ;
     }
 
-    @ModelAttribute
+    /*@ModelAttribute
     public void addAttributes(Model model){
         model.addAttribute("msg","额外信息") ;
-    }
+    }*/
 }

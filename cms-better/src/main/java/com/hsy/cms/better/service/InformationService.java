@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * @author heshiyuan
@@ -47,7 +48,7 @@ public class InformationService {
         ServiceResponseBody<AddInformationResponse> responseBody = new ServiceResponseBody<>();
         TCmsCheck check = new TCmsCheck();
         // 根据redis生成业务编号
-        check.setCheckId("check0001");
+        check.setCheckId("checkId:"+ new Random().nextInt(10000));
         check.setCheckName("咨询审核");
         check.setCheckState((byte) 0);
         check.setCreateTime(new Date());
@@ -68,6 +69,6 @@ public class InformationService {
         if(tCmsInformationMapper.insert(information)>0){
             logger.info("【添加资讯】添加资讯信息成功。");
         }
-        return new ServiceResponseBody();
+        return new ServiceResponseBody(true,"0000","成功",true);
     }
 }

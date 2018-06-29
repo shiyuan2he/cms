@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TCmsInformationMapper {
     @Insert({
-        "insert into t_cms_picture(title, big_title, description, category, " +
+        "insert into t_cms_information (title, big_title, description, category, " +
                 "content, picture_id, check_id, create_date, update_date, " +
                 "create_user_id, update_user_id, del, browses_count, likes_count, comments_count)" +
                     "values(#{title}, #{bigTitle}, #{description}, #{category}, " +

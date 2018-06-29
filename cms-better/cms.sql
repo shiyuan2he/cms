@@ -61,5 +61,6 @@ ALTER TABLE t_cms_check add COLUMN create_time TIMESTAMP COMMENT '创建时间' 
 ALTER TABLE t_cms_check add COLUMN create_user_id VARCHAR(32) COMMENT '创建者' AFTER create_time;
 ALTER TABLE t_cms_check add COLUMN check_time TIMESTAMP COMMENT '审核时间' AFTER create_user_id;
 ALTER TABLE t_cms_check add COLUMN check_user_id VARCHAR(32) COMMENT '审核者' AFTER check_time;
-
+alter TABLE t_cms_picture MODIFY COLUMN source VARCHAR(20) DEFAULT '' NULL COMMENT '来源';
+ALTER TABLE t_cms_picture MODIFY COLUMN picture_url VARCHAR(100) NOT NULL COMMENT '图片地址' DEFAULT '';
 

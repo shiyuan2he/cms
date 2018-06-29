@@ -1,9 +1,13 @@
 package com.hsy.cms.better.web;
 
+import com.hsy.cms.better.bean.entity.TCmsPicture;
+import com.hsy.cms.better.bean.param.response.UploadPictureResponse;
+import com.hsy.cms.better.dao.TCmsPictureMapper;
 import com.hsy.java.bean.dto.ResponseBodyBean;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
+
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -29,6 +35,9 @@ import java.util.Date;
 public class PictureController {
     private static final Logger logger = LoggerFactory.getLogger(PictureController.class);
     private String pictureServer = "/upload";
+
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired private TCmsPictureMapper tCmsPictureMapper;
     /**
      * @description <p></p>
      * @param
@@ -38,10 +47,10 @@ public class PictureController {
      */
     @PostMapping(value = "/upload")
     @ResponseBody
-    public ResponseBodyBean<String> upload(
+    public ResponseBodyBean<UploadPictureResponse> upload(
             @RequestParam(value="file",required=false) MultipartFile imageFile,
             HttpServletRequest request) throws IOException {
-
+        UploadPictureResponse uploadPictureResponse = new UploadPictureResponse();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date = new java.util.Date();
         String strDate = sdf.format(date);
@@ -66,6 +75,19 @@ public class PictureController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ResponseBodyBean<>(true,"0000","上传成功",returnUrl);
+        TCmsPicture picture = new TCmsPicture();
+        String pictureId = String.valueOf(new Random().nextInt()*100000);
+        picture.setPictureId(pictureId);
+        picture.setPictureUrl(returnUrl);
+        picture.setSource("information");
+        if(tCmsPictureMapper.insert(picture)>0){
+            uploadPictureResponse.setPictureId(pictureId);
+            uploadPictureResponse.setPictureUrl(returnUrl);
+            logger.info("保存图片信息成功");
+            return new ResponseBodyBean<>(true,"0000","上传成功",uploadPictureResponse);
+        }else{
+            logger.error("保存图片信息失败");
+            return new ResponseBodyBean<>(false,"9999","上传失败",null);
+        }
     }
 }
