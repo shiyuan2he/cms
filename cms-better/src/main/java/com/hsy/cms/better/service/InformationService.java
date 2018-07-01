@@ -7,13 +7,16 @@ import com.hsy.cms.better.bean.param.response.AddInformationResponse;
 import com.hsy.cms.better.dao.TCmsCheckMapper;
 import com.hsy.cms.better.dao.TCmsInformationMapper;
 import com.hsy.java.bean.dto.ServiceResponseBody;
+import com.hsy.java.exception.service.BusinessException;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -43,7 +46,7 @@ public class InformationService {
      * @param param
      * @return
      */
-    //@Transactional
+    @Transactional
     public ServiceResponseBody<AddInformationResponse> addInformation(AddInformationParam param){
         ServiceResponseBody<AddInformationResponse> responseBody = new ServiceResponseBody<>();
         TCmsCheck check = new TCmsCheck();
@@ -51,7 +54,8 @@ public class InformationService {
         check.setCheckId("checkId:"+ new Random().nextInt(10000));
         check.setCheckName("咨询审核");
         check.setCheckState((byte) 0);
-        check.setCreateTime(new Date());
+        Calendar calendar = Calendar.getInstance();
+        check.setCreateTime(calendar.getTime());
         check.setCheckUserId("1111");
         check.setDel((byte) 0);
         if(tCmsCheckMapper.insert(check) > 0){
@@ -61,10 +65,9 @@ public class InformationService {
         TCmsInformation information = new TCmsInformation();
         try {
             BeanUtils.copyProperties(information,param);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            information.setCreateDate(calendar.getTime());
+        } catch (Exception e) {
+           throw new BusinessException("9999","复制bean异常");
         }
         if(tCmsInformationMapper.insert(information)>0){
             logger.info("【添加资讯】添加资讯信息成功。");

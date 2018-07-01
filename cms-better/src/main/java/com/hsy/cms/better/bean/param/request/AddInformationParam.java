@@ -1,5 +1,7 @@
 package com.hsy.cms.better.bean.param.request;
 
+import com.hsy.java.bean.vo.UserInfoBean;
+
 import java.util.Date;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Date;
  * Copyright (c) 2018 shiyuan4work@sina.com All rights reserved.
  * @price ¥5    微信：hewei1109
  */
-public class AddInformationParam {
+public class AddInformationParam extends UserInfoBean{
     private Long id;
     private String title;
     private String bigTitle;

@@ -45,6 +45,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/") ;
+        registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/") ;
         super.addResourceHandlers(registry);
     }
 }
