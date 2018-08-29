@@ -23,5 +23,4 @@ public interface TCmsPictureMapper {
             "values (#{pictureId}, #{pictureUrl}, #{source}, 0)</script>"
     })
     int insert(TCmsPicture picture);
-    
 }

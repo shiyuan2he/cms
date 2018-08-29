@@ -64,3 +64,117 @@ ALTER TABLE t_cms_check add COLUMN check_user_id VARCHAR(32) COMMENT '审核者'
 alter TABLE t_cms_picture MODIFY COLUMN source VARCHAR(20) DEFAULT '' NULL COMMENT '来源';
 ALTER TABLE t_cms_picture MODIFY COLUMN picture_url VARCHAR(100) NOT NULL COMMENT '图片地址' DEFAULT '';
 
+create table t_crm_user
+(
+  id bigint(19) default '0' not null comment '主键' primary key,
+  user_code varchar(10) default '' null comment '用户编码',
+  user_name varchar(19) null comment '用户名称',
+  password varchar(19) null comment '用户密码',
+  password_encryption_type varchar(10) null comment '密码加密类型',
+  mobile bigint(11) default '0' null comment '用户手机号',
+  email varchar(30) null comment '邮箱',
+  sex tinyint(1) default '0' null comment '性别：0 保密，1男2女',
+  remark varchar(100) null comment '备注',
+  source varchar(20) null comment '用户来源',
+  is_del tinyint(1) default '0' null comment '是否逻辑删除 0：启用 1：禁用',
+  creater bigint(19) default '0' not null comment '创建者',
+  create_time timestamp default '0000-00-00 00:00:00' not null comment '创建时间',
+  updater bigint(19) default '0' null comment '更新者',
+  update_time timestamp default '0000-00-00 00:00:00' not null comment '更新时间',
+  age smallint(6) null,
+  picture varchar(255) null,
+  real_name varchar(255) null,
+  constraint user_code unique (user_code),
+  constraint user_name unique (user_name),
+  constraint mobile unique (mobile),
+  constraint email unique (email)
+) comment '统一用户表'
+;
+
+create table t_crm_permission
+(
+  id bigint(19) auto_increment comment '主键id'
+    primary key,
+  auth_address varchar(100) default '' not null comment '权限地址',
+  auth_description varchar(100) default '' not null comment '权限描述',
+  parent_id bigint(19) default '0' not null comment '父级id',
+  auth_type varchar(10) default '' not null comment '权限类型：BUTTON:按钮 MENU:菜单',
+  creater bigint(19) default '0' not null comment '创建者',
+  create_time timestamp default '0000-00-00 00:00:00' not null comment '创建时间',
+  updater bigint(19) default '0' null comment '更新者',
+  update_time timestamp default '0000-00-00 00:00:00' not null comment '更新时间',
+  constraint auth_address
+  unique (auth_address),
+  constraint t_crm_permission_ibfk_1
+  foreign key (creater) references t_crm_user (id)
+)
+  comment '用户权限表'
+;
+
+create index creater
+  on t_crm_permission (creater)
+;
+
+create table t_crm_role
+(
+  id bigint(19) auto_increment comment '主键id'
+    primary key,
+  role_name varchar(20) default '' not null comment '角色名称',
+  role_description varchar(20) default '' not null comment '角色描述',
+  creater bigint(19) default '0' not null comment '创建者',
+  create_time timestamp default '0000-00-00 00:00:00' not null comment '创建时间',
+  updater bigint(19) default '0' null comment '更新者',
+  update_time timestamp default '0000-00-00 00:00:00' not null comment '更新时间',
+  constraint role_name
+  unique (role_name),
+  constraint t_crm_role_ibfk_1
+  foreign key (creater) references t_crm_user (id)
+)
+  comment '用户角色表'
+;
+
+create index creater
+  on t_crm_role (creater)
+;
+
+create table t_crm_role_permission
+(
+  id bigint(19) auto_increment comment '主键'
+    primary key,
+  role_id bigint(19) default '0' not null comment '关联角色表主键',
+  permission_id bigint(19) default '0' not null comment '关联角色表主键',
+  constraint idx_uqi_roleId_permissionId
+  unique (role_id, permission_id),
+  constraint t_crm_role_permission_ibfk_1
+  foreign key (role_id) references t_crm_role (id),
+  constraint t_crm_role_permission_ibfk_2
+  foreign key (permission_id) references t_crm_permission (id)
+)
+  comment '角色权限表'
+;
+
+create index permission_id
+  on t_crm_role_permission (permission_id)
+;
+
+create table t_crm_user_role
+(
+  id bigint(19) auto_increment comment '主键'
+    primary key,
+  user_id bigint(19) default '0' not null comment '关联用户表主键',
+  role_id bigint(19) default '0' not null comment '关联角色表主键',
+  constraint idx_uqi_userId_roleId
+  unique (user_id, role_id),
+  constraint t_crm_user_role_ibfk_1
+  foreign key (user_id) references t_crm_user (id),
+  constraint t_crm_user_role_ibfk_2
+  foreign key (role_id) references t_crm_role (id)
+)
+  comment '用户角色表'
+;
+
+create index role_id
+  on t_crm_user_role (role_id)
+;
+
+

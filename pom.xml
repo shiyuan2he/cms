@@ -27,6 +27,7 @@
         <version.swagger>2.7.0</version.swagger>
         <version.jackson.databind>2.8.10</version.jackson.databind>
         <version.c3p0.mchange>0.9.5.2</version.c3p0.mchange>
+        <version.logbok>1.18.2</version.logbok>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -165,6 +166,13 @@
             <artifactId>spring-boot-devtools</artifactId>
             <scope>provided</scope>
             <optional>true</optional>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${version.lombok}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
