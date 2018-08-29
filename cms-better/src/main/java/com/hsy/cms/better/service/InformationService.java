@@ -38,6 +38,8 @@ public class InformationService {
 
     @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired private TCmsInformationMapper tCmsInformationMapper;
+
+    @Autowired private RedisService redisService;
     /**
      * @description <p>
      *     1.保存审核信息
@@ -51,7 +53,7 @@ public class InformationService {
         ServiceResponseBody<AddInformationResponse> responseBody = new ServiceResponseBody<>();
         TCmsCheck check = new TCmsCheck();
         // 根据redis生成业务编号
-        check.setCheckId("checkId:"+ new Random().nextInt(10000));
+        check.setCheckId(redisService.getSerialNoByType("CHECK", 5));
         check.setCheckName("咨询审核");
         check.setCheckState((byte) 0);
         Calendar calendar = Calendar.getInstance();
