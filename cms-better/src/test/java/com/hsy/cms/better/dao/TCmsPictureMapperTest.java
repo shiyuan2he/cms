@@ -1,6 +1,7 @@
 package com.hsy.cms.better.dao;
 
 import com.hsy.cms.better.bean.entity.TCmsPicture;
+import com.hsy.cms.better.mapper.TCmsPictureMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

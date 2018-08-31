@@ -1,5 +1,6 @@
 package com.hsy.cms.better;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @SpringBootApplication
-//@ComponentScan(value = {"com.hsy.cms"})
+@MapperScan(value = "com.hsy.cms.better.mapper")
 public class CmsApplication {
     public static void main(String[] args) {
         new SpringApplicationBuilder(CmsApplication.class)

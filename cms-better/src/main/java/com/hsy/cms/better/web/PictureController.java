@@ -2,7 +2,7 @@ package com.hsy.cms.better.web;
 
 import com.hsy.cms.better.bean.entity.TCmsPicture;
 import com.hsy.cms.better.bean.param.response.UploadPictureResponse;
-import com.hsy.cms.better.dao.TCmsPictureMapper;
+import com.hsy.cms.better.mapper.TCmsPictureMapper;
 import com.hsy.java.bean.dto.ResponseBodyBean;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -36,8 +36,7 @@ public class PictureController {
     private static final Logger logger = LoggerFactory.getLogger(PictureController.class);
     private String pictureServer = "/upload";
 
-    @SuppressWarnings("SpringJavaAutowiringInspection")
-    @Autowired private TCmsPictureMapper tCmsPictureMapper;
+//    @Autowired private TCmsPictureMapper tCmsPictureMapper;
     /**
      * @description <p></p>
      * @param
@@ -45,7 +44,7 @@ public class PictureController {
      * @author heshiyuan
      * @date 2018/6/28 11:48
      */
-    @PostMapping(value = "/upload")
+   /* @PostMapping(value = "/upload")
     @ResponseBody
     public ResponseBodyBean<UploadPictureResponse> upload(
             @RequestParam(value="file",required=false) MultipartFile imageFile,
@@ -57,8 +56,8 @@ public class PictureController {
         String fileName = strDate + imageFile.getOriginalFilename().substring(
                 imageFile.getOriginalFilename().indexOf("."),imageFile.getOriginalFilename().length());
 
-        /*String realPath = PictureController.class.getResource("")
-                .getPath().split("target/classes")[0].substring(1).concat("src/main/resources/assets"+pictureServer);*/
+        *//*String realPath = PictureController.class.getResource("")
+                .getPath().split("target/classes")[0].substring(1).concat("src/main/resources/assets"+pictureServer);*//*
         String realPath = PictureController.class.getResource("").getPath()
                 .substring(1).split("classes")[0].concat("classes/assets"+pictureServer);
 
@@ -89,5 +88,5 @@ public class PictureController {
             logger.error("保存图片信息失败");
             return new ResponseBodyBean<>(false,"9999","上传失败",null);
         }
-    }
+    }*/
 }

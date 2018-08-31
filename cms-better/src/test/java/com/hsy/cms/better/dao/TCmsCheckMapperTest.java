@@ -1,6 +1,7 @@
 package com.hsy.cms.better.dao;
 
 import com.hsy.cms.better.bean.entity.TCmsCheck;
+import com.hsy.cms.better.mapper.TCmsCheckMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ public class TCmsCheckMapperTest {
     @Autowired private TCmsCheckMapper tCmsCheckMapper;
     @Test
     public void insert() throws Exception {
-        TCmsCheck tCmsCheck = new TCmsCheck();
+       /* TCmsCheck tCmsCheck = new TCmsCheck();
         tCmsCheck.setCheckId("1342342342341234");
         tCmsCheck.setCheckState((byte) 0);
         tCmsCheck.setCheckRemark("fasdfsf sdf");
@@ -40,7 +41,7 @@ public class TCmsCheckMapperTest {
         tCmsCheck.setCreateTime(calendar.getTime());
         tCmsCheck.setCreateUserId("sdfsfsdf");
         tCmsCheck.setCheckName("dfsfsfsdf");
-        logger.info("------{}------",tCmsCheckMapper.insert(tCmsCheck));
+        logger.info("------{}------",tCmsCheckMapper.insert(tCmsCheck));*/
     }
 
 }

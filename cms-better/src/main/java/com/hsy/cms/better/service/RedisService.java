@@ -1,6 +1,4 @@
 package com.hsy.cms.better.service;
-
-import com.hsy.cms.better.dao.IRedisRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +7,6 @@ import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -25,8 +20,7 @@ import java.util.concurrent.TimeUnit;
 @Service(value = "redisService")
 public class RedisService {
     private static final Logger logger = LoggerFactory.getLogger(RedisService.class);
-    @Autowired private IRedisRepository redisRepository;
-    
+
     /**
      * @description <p></p>
      * @param businessType 业务开头
@@ -37,7 +31,7 @@ public class RedisService {
      */
     public String getSerialNoByType(String businessType, int length){
         logger.info("[业务编号生成]-当前业务类型:{},递增序列号长度:{},开始获取", businessType, length);
-        if(StringUtils.isEmpty(businessType)){
+        /*if(StringUtils.isEmpty(businessType)){
             return null;
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -60,6 +54,7 @@ public class RedisService {
             return null;
         }
         logger.info("[业务编号生成]-获取业务编号为:{}", stringBuffer.toString());
-        return stringBuffer.toString();
+        return stringBuffer.toString();*/
+        return null;
     }
 }

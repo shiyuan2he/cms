@@ -4,8 +4,8 @@ import com.hsy.cms.better.bean.entity.TCmsCheck;
 import com.hsy.cms.better.bean.entity.TCmsInformation;
 import com.hsy.cms.better.bean.param.request.AddInformationParam;
 import com.hsy.cms.better.bean.param.response.AddInformationResponse;
-import com.hsy.cms.better.dao.TCmsCheckMapper;
-import com.hsy.cms.better.dao.TCmsInformationMapper;
+import com.hsy.cms.better.mapper.TCmsCheckMapper;
+import com.hsy.cms.better.mapper.TCmsInformationMapper;
 import com.hsy.java.bean.dto.ServiceResponseBody;
 import com.hsy.java.exception.service.BusinessException;
 import org.apache.commons.beanutils.BeanUtils;
@@ -14,12 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
-
 /**
  * @author heshiyuan
  * @description <p></p>
@@ -33,13 +28,11 @@ import java.util.Random;
 @Service(value = "informationService")
 public class InformationService {
     private static final Logger logger = LoggerFactory.getLogger(InformationService.class);
-    @SuppressWarnings("SpringJavaAutowiringInspection")
-    @Autowired private TCmsCheckMapper tCmsCheckMapper;
+    //@Autowired private TCmsCheckMapper tCmsCheckMapper;
 
-    @SuppressWarnings("SpringJavaAutowiringInspection")
-    @Autowired private TCmsInformationMapper tCmsInformationMapper;
+//    @Autowired private TCmsInformationMapper tCmsInformationMapper;
 
-    @Autowired private RedisService redisService;
+//    @Autowired private RedisService redisService;
     /**
      * @description <p>
      *     1.保存审核信息
@@ -50,7 +43,7 @@ public class InformationService {
      */
     @Transactional
     public ServiceResponseBody<AddInformationResponse> addInformation(AddInformationParam param){
-        ServiceResponseBody<AddInformationResponse> responseBody = new ServiceResponseBody<>();
+        /*ServiceResponseBody<AddInformationResponse> responseBody = new ServiceResponseBody<>();
         TCmsCheck check = new TCmsCheck();
         // 根据redis生成业务编号
         check.setCheckId(redisService.getSerialNoByType("CHECK", 5));
@@ -74,6 +67,7 @@ public class InformationService {
         if(tCmsInformationMapper.insert(information)>0){
             logger.info("【添加资讯】添加资讯信息成功。");
         }
-        return new ServiceResponseBody(true,"0000","成功",true);
+        return new ServiceResponseBody(true,"0000","成功",true);*/
+        return null;
     }
 }
